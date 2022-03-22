@@ -1,3 +1,4 @@
+
 NAME		= megaphone
 
 CXX			= c++
@@ -8,9 +9,12 @@ RM			= rm -f
 all			: $(NAME)
 
 $(NAME)		: $(MAIN)
-	$(CXX) $(MAIN) -o $@ $(CXXFLAGS)
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
 clean		: $(RM) $(NAME)
+
+fclean		: clean
+				$(RM) $(NAME)
 
 re			: clean all
 
