@@ -2,7 +2,7 @@
 #define CONTACT_HPP
 
 #include <iostream>
-#include <string.h>
+#include <string>
 #include <cstdlib>
 
 class Contact {
@@ -21,8 +21,8 @@ class Contact {
 
 	private:
 	 std::string firstname;
-	 std::string lasttname;
-	 std::string nicktname;
+	 std::string lastname;
+	 std::string nickname;
 	 std::string phonenumber;
 	 std::string darkestsecret;
 };
