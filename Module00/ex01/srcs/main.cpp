@@ -9,6 +9,8 @@ int main(void) {
 	while (1) {
 		phoneBook.printManual();
 		std::getline(std::cin, input);
+		if (std::cin.eof())
+			exit(0);
 		phoneBook.checkCommand(input);
 	}
 	/*
