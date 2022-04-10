@@ -14,10 +14,15 @@ class PhoneBook {
 	 void drawTableTop();
 	 void drawTableRow();
 	 void selectedContact(int index);
+	 void contactSelecting();
 	 void printContact(int index);
 	 void printNames(std::string name);
 	 void addContact();
+	 void IndexError();
+	 bool checkIndex(std::string index);
 	 void searchContact();
+	 void printPhoneBook();
+	 void emptyPhoneBook();
 };
 
 #endif

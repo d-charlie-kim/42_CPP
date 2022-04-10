@@ -1,31 +1,34 @@
 #include "phoneBook.hpp"
 
 void PhoneBook::drawTableTop() {
-	std::cout << "+―――――――――+――――――――――+――――――――――+――――――――――+\n";
-	std::cout << "|  INDEX  |FIRST NAME|LAST NAME |NICK NAME |\n";
- 	std::cout << "+―――――――――+――――――――――+――――――――――+――――――――――+\n";
+	std::cout << "+――――――――――+――――――――――+――――――――――+――――――――――+\n";
+	std::cout << "|INDEX     |FIRST NAME|LAST NAME |NICK NAME |\n";
+ 	std::cout << "+――――――――――+――――――――――+――――――――――+――――――――――+\n";
 }
 
 void PhoneBook::drawTableRow() {
-	std::cout << "+―――――――――+――――――――――+――――――――――+――――――――――+\n";
+	std::cout << "+――――――――――+――――――――――+――――――――――+――――――――――+\n";
 }
 
 void PhoneBook::selectedContact(int index) {
-	std::cout << "+――――――――――――――――――――――――――――――――――――――――――+\n";
+	std::cout << "+―――――――――――――――――――――――――――――――――――――――――――+\n";
 	std::cout << "INDEX          : " << index + 1 << "\n";
 	std::cout << "FIRST NAME     : " << contacts[index].getFirstName() << "\n";
 	std::cout << "LAST NAME      : " << contacts[index].getLastName() << "\n";
 	std::cout << "NICK NAME      : " << contacts[index].getNickName() << "\n";
 	std::cout << "PHONE NUMBER   : " << contacts[index].getPhoneNumber() << "\n";
 	std::cout << "DARKEST SECRET : " << contacts[index].getDarkestSecret() << "\n";
-	std::cout << "+――――――――――――――――――――――――――――――――――――――――――+\n";
+	std::cout << "+―――――――――――――――――――――――――――――――――――――――――――+\n";
 }
 
 void PhoneBook::checkCommand(std::string input) {
 	if (input == "ADD") {
-		PhoneBook::addContact();
+		addContact();
 	} else if (input == "SEARCH") {
-		PhoneBook::searchContact();
+		if (num == 0)
+			emptyPhoneBook();
+		else
+			searchContact();
 	} else if (input == "EXIT") {
 		std::exit(0);
 	} else
@@ -70,7 +73,44 @@ void PhoneBook::printContact(int index) {
 	std::cout << "|\n";
 }
 
-void PhoneBook::searchContact() {
+void PhoneBook::emptyPhoneBook() {
+	std::cout << "\n!!! PHONE BOOK IS EMPTY !!!\n";
+}
+
+bool PhoneBook::checkIndex(std::string index) {
+	if (index == "1" || index == "2" || index == "3" || index == "4" || \
+	index == "5" || index == "6" || index == "7" || index == "8") {
+		if (num > 8 || num >= stoi(index))
+	 		return true;
+		else
+			return false;
+	}
+	else
+		return false;
+}
+
+void PhoneBook::IndexError() {
+	std::cout << "\n!!! PLEASE ENTER VALID INDEX !!!\n";
+}
+
+void PhoneBook::contactSelecting() {
+	std::string selectIndex;
+	while (1) {
+		std::cout << "\n + PLEASE SELECT INDEX NUMBER +\n\n" << "INDEX: ";
+		std::getline(std::cin, selectIndex);
+		if (std::cin.eof())
+			exit(0);
+		if (checkIndex(selectIndex) == false) {
+			IndexError();
+			continue ;
+		}
+		selectedContact(stoi(selectIndex) - 1);
+		std::cout << "\n";
+		break ;
+	}
+}
+
+void PhoneBook::printPhoneBook() {
 	std::cout << "\n              + PHONE BOOK +\n";
 	int index;
 	if (num > 8)
@@ -81,13 +121,13 @@ void PhoneBook::searchContact() {
 	for (int i = 0; i < num; i++) {
 		if (i == 8)
 			break ;
-		std::cout << "|    " << i + 1 << "    |";
+		std::cout << "|        " << i + 1 << "|";
 		printContact((index + i) % 8);
 		drawTableRow();
 	}
-	std::cout << "\n + PLEASE SELECT INDEX NUMBER +\n\n" << "INDEX: ";
-	// int index;
-	//std::getline(std::cin, index);
-	//selectedContact(index - 1);
-	//std::cout << "\n";
+}
+
+void PhoneBook::searchContact() {
+	printPhoneBook();
+	contactSelecting();
 }
