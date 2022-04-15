@@ -1,5 +1,5 @@
 
-NAME		= bankLog
+NAME		= Zombie
 
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
@@ -7,8 +7,10 @@ INC			= -I ./includes
 RM			= rm -f
 
 SRCS		= $(addprefix ./srcs/, \
-						tests.cpp \
-						Account.cpp \
+						main.cpp \
+						Zombie.cpp \
+						newZombie.cpp \
+						randomChump.cpp \
 						)
 
 OBJS		= $(SRCS:.cpp=.o)
