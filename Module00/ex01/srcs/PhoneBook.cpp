@@ -1,8 +1,8 @@
-#include "phoneBook.hpp"
+#include "PhoneBook.hpp"
 
 void PhoneBook::drawTableTop() {
 	std::cout << "+――――――――――+――――――――――+――――――――――+――――――――――+\n";
-	std::cout << "|INDEX     |FIRST NAME|LAST NAME |NICK NAME |\n";
+	std::cout << "|     INDEX|FIRST NAME| LAST NAME| NICKNAME|\n";
  	std::cout << "+――――――――――+――――――――――+――――――――――+――――――――――+\n";
 }
 
@@ -15,7 +15,7 @@ void PhoneBook::selectedContact(int index) {
 	std::cout << "INDEX          : " << index + 1 << "\n";
 	std::cout << "FIRST NAME     : " << contacts[index].getFirstName() << "\n";
 	std::cout << "LAST NAME      : " << contacts[index].getLastName() << "\n";
-	std::cout << "NICK NAME      : " << contacts[index].getNickName() << "\n";
+	std::cout << "NICKNAME       : " << contacts[index].getNickName() << "\n";
 	std::cout << "PHONE NUMBER   : " << contacts[index].getPhoneNumber() << "\n";
 	std::cout << "DARKEST SECRET : " << contacts[index].getDarkestSecret() << "\n";
 	std::cout << "+―――――――――――――――――――――――――――――――――――――――――――+\n";
@@ -80,7 +80,10 @@ void PhoneBook::emptyPhoneBook() {
 bool PhoneBook::checkIndex(std::string index) {
 	if (index == "1" || index == "2" || index == "3" || index == "4" || \
 	index == "5" || index == "6" || index == "7" || index == "8") {
-		if (num > 8 || num >= stoi(index))
+		int i = 0;
+		std::stringstream ssInt(index);
+		ssInt >> i;
+		if (num > 8 || num >= i)
 	 		return true;
 		else
 			return false;
@@ -95,6 +98,8 @@ void PhoneBook::IndexError() {
 
 void PhoneBook::contactSelecting() {
 	std::string selectIndex;
+	int index = 0;
+
 	while (1) {
 		std::cout << "\n + PLEASE SELECT INDEX NUMBER +\n\n" << "INDEX: ";
 		std::getline(std::cin, selectIndex);
@@ -104,7 +109,9 @@ void PhoneBook::contactSelecting() {
 			IndexError();
 			continue ;
 		}
-		selectedContact(stoi(selectIndex) - 1);
+		std::stringstream ssInt(selectIndex);
+		ssInt >> index;
+		selectedContact(index - 1);
 		std::cout << "\n";
 		break ;
 	}
@@ -121,7 +128,7 @@ void PhoneBook::printPhoneBook() {
 	for (int i = 0; i < num; i++) {
 		if (i == 8)
 			break ;
-		std::cout << "|        " << i + 1 << "|";
+		std::cout << "|         " << i + 1 << "|";
 		printContact((index + i) % 8);
 		drawTableRow();
 	}

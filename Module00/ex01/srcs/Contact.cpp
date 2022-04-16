@@ -1,5 +1,4 @@
-#include "contact.hpp"
-#include "phoneBook.hpp"
+#include "Contact.hpp"
 
 void Contact::setFirstName() {
 	std::cout << "First Name: ";

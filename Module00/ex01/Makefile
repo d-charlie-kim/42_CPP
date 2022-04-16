@@ -8,8 +8,8 @@ RM			= rm -f
 
 SRCS		= $(addprefix ./srcs/, \
 						main.cpp \
-						phoneBook.cpp \
-						contact.cpp \
+						PhoneBook.cpp \
+						Contact.cpp \
 						)
 
 OBJS		= $(SRCS:.cpp=.o)
