@@ -1,11 +1,11 @@
 
-NAME		= megaphone
+NAME		= ThisIsBrain
 
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -g
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 RM			= rm -f
 
-SRCS		= megaphone.cpp
+SRCS		= main.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 
