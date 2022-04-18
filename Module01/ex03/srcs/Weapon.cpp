@@ -13,7 +13,7 @@ Weapon::~Weapon() {
 	std::cout << _type << ": Destructed\n";
 };
 
-std::string Weapon::getType() {
+const std::string& Weapon::getType() {
 	return _type;
 };
 

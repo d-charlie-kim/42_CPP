@@ -13,6 +13,3 @@ int main(void) {
 		phoneBook.checkCommand(input);
 	}
 }
-
-/// 처음 선언시에 초기화 해주는 부분 필요 ***** // 생성자
-/// getline 에 대한 이해
