@@ -1,12 +1,14 @@
 #include "Account.hpp"
 #include <iostream>
+#include <ctime>
+#include <iomanip>
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
-Account::~Account(void) {
+Account::~Account() {
 	_displayTimestamp();
 	std::cout << " index:" << _accountIndex;
 	std::cout << ";amount:" << _amount;
@@ -25,8 +27,16 @@ Account::Account(int initial_deposit) {
 };
 
 void Account::_displayTimestamp(void) {
+	time_t timer;
+	timer = time(NULL);
+	struct tm* t = localtime(&timer);
 	std::cout << "[";
-	std::cout << "19920104_091532";
+	std::cout << t->tm_year + 1900 - 2000;
+	std::cout << std::setfill('0') << std::setw(2) << t->tm_mon + 1;
+	std::cout << std::setfill('0') << std::setw(2) << t->tm_mday << "_";
+	std::cout << std::setfill('0') << std::setw(2) << t->tm_hour;
+	std::cout << std::setfill('0') << std::setw(2) << t->tm_min;
+	std::cout << std::setfill('0') << std::setw(2) << t->tm_sec;
 	std::cout << "]";
 };
 
