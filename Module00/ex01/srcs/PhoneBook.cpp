@@ -2,7 +2,7 @@
 
 void PhoneBook::drawTableTop() {
 	std::cout << "+――――――――――+――――――――――+――――――――――+――――――――――+\n";
-	std::cout << "|     INDEX|FIRST NAME| LAST NAME| NICKNAME|\n";
+	std::cout << "|     INDEX|FIRST NAME| LAST NAME|  NICKNAME|\n";
  	std::cout << "+――――――――――+――――――――――+――――――――――+――――――――――+\n";
 }
 
@@ -12,7 +12,7 @@ void PhoneBook::drawTableRow() {
 
 void PhoneBook::selectedContact(int index) {
 	std::cout << "+―――――――――――――――――――――――――――――――――――――――――――+\n";
-	std::cout << "INDEX          : " << index + 1 << "\n";
+	std::cout << "INDEX          : " << index << "\n";
 	std::cout << "FIRST NAME     : " << contacts[index].getFirstName() << "\n";
 	std::cout << "LAST NAME      : " << contacts[index].getLastName() << "\n";
 	std::cout << "NICKNAME       : " << contacts[index].getNickName() << "\n";
@@ -78,12 +78,12 @@ void PhoneBook::emptyPhoneBook() {
 }
 
 bool PhoneBook::checkIndex(std::string index) {
-	if (index == "1" || index == "2" || index == "3" || index == "4" || \
-	index == "5" || index == "6" || index == "7" || index == "8") {
+	if (index == "0" || index == "1" || index == "2" || index == "3" || \
+	index == "4" || index == "5" || index == "6" || index == "7") {
 		int i = 0;
 		std::stringstream ssInt(index);
 		ssInt >> i;
-		if (num > 8 || num >= i)
+		if (num > 8 || num > i)
 	 		return true;
 		else
 			return false;
@@ -111,7 +111,7 @@ void PhoneBook::contactSelecting() {
 		}
 		std::stringstream ssInt(selectIndex);
 		ssInt >> index;
-		selectedContact(index - 1);
+		selectedContact(index);
 		std::cout << "\n";
 		break ;
 	}
@@ -119,17 +119,12 @@ void PhoneBook::contactSelecting() {
 
 void PhoneBook::printPhoneBook() {
 	std::cout << "\n              + PHONE BOOK +\n";
-	int index;
-	if (num > 8)
-		index = num % 8;
-	else
-		index = 0;
 	drawTableTop();
 	for (int i = 0; i < num; i++) {
 		if (i == 8)
 			break ;
-		std::cout << "|         " << i + 1 << "|";
-		printContact((index + i) % 8);
+		std::cout << "|         " << i << "|";
+		printContact(i);
 		drawTableRow();
 	}
 }
