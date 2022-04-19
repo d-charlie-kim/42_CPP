@@ -10,6 +10,8 @@ class PhoneBook {
 	 int _num;
 	 void checkCommand(std::string input);
 	 void printManual();
+	 PhoneBook();
+	 ~PhoneBook();
 	 
 	private:
 	 Contact contacts[8];

@@ -6,6 +6,8 @@
 
 class Contact {
 	public:
+	 Contact();
+	 ~Contact();
 	 void setFirstName();
 	 void setLastName();
 	 void setNickName();

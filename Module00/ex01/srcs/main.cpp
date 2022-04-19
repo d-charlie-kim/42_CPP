@@ -4,7 +4,6 @@ int main(void) {
 
 	PhoneBook phoneBook;
 	std::string input;
-	phoneBook._num = 0;
 	while (1) {
 		phoneBook.printManual();
 		std::getline(std::cin, input);

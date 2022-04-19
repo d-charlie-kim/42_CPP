@@ -1,5 +1,10 @@
 #include "PhoneBook.hpp"
 
+PhoneBook::PhoneBook()
+: _num(0) {}
+
+PhoneBook::~PhoneBook() {}
+
 void PhoneBook::drawTableTop() {
 	std::cout << "+――――――――――+――――――――――+――――――――――+――――――――――+\n";
 	std::cout << "|     INDEX|FIRST NAME| LAST NAME|  NICKNAME|\n";
