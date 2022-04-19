@@ -36,8 +36,10 @@ int replacing(std::string &filename, std::string& s1, std::string& s2) {
 				outFile << readString << std::endl;
 				break ;
 			}
-			outFile << readString.substr(0, index) + s2;
-			readString = readString.substr(index + s1.length());
+			else {
+				outFile << readString.substr(0, index) + s2;
+				readString = readString.substr(index + s1.length());
+			}
 		}
 	}
 	inFile.close();
