@@ -1,7 +1,8 @@
-NAME		= ThisIsBrain
+NAME		= LoserSED
 
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
+INC			= -I ./includes 
 RM			= rm -f
 
 SRCS		= main.cpp
@@ -9,12 +10,12 @@ SRCS		= main.cpp
 OBJS		= $(SRCS:.cpp=.o)
 
 %.o			: %.cpp
-			$(CXX) $(CXXFLAGS) -c $^ -o $@
+			$(CXX) $(CXXFLAGS) $(INC) -c $^ -o $@
 
 all			: $(NAME)
 
 $(NAME)		: $(OBJS)
-			$(CXX) $(CXXFLAGS) $^ -o $@
+			$(CXX) $(CXXFLAGS) $(INC) $^ -o $@
 
 clean		:
 				$(RM) $(OBJS)

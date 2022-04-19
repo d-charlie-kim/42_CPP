@@ -19,11 +19,11 @@ class Contact {
 	 std::string getDarkestSecret();
 
 	private:
-	 std::string firstname;
-	 std::string lastname;
-	 std::string nickname;
-	 std::string phonenumber;
-	 std::string darkestsecret;
+	 std::string _firstname;
+	 std::string _lastname;
+	 std::string _nickname;
+	 std::string _phonenumber;
+	 std::string _darkestsecret;
 };
 
 #endif

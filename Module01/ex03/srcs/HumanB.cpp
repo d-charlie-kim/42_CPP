@@ -1,11 +1,7 @@
 #include "HumanB.hpp"
 
-HumanB::HumanB() {
-	std::cout << "Passed Default Constructor\n";
-};
-
-HumanB::HumanB(std::string name) {
-	_name = name;
+HumanB::HumanB(std::string name)
+: _name(name) {
 	std::cout << _name << ": Constructed\n";
 };
 
@@ -18,6 +14,6 @@ void HumanB::attack() {
 	std::cout << _Weapon->getType() << "\n";
 };
 
-void HumanB::setWeapon(Weapon &arm) {
+void HumanB::setWeapon(Weapon& arm) {
 	_Weapon = &arm;
 };

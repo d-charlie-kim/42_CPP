@@ -5,13 +5,8 @@ void HumanA::attack() {
 	std::cout << _Weapon.getType() << "\n"; 
 };
 
-HumanA::HumanA() {
-	std::cout << "Passed Default Constructor\n";
-};
-
-HumanA::HumanA(std::string name, Weapon &arm) {
-	_name = name;
-	_Weapon = arm;
+HumanA::HumanA(std::string name, Weapon& arm)
+: _name(name), _Weapon(arm) {
 	std::cout << _name << ": Constructed\n";
 };
 

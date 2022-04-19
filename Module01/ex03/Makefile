@@ -1,4 +1,3 @@
-
 NAME		= war
 
 CXX			= c++

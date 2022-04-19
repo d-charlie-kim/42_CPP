@@ -7,7 +7,7 @@
 
 class PhoneBook {
 	public:
-	 int num;
+	 int _num;
 	 void checkCommand(std::string input);
 	 void printManual();
 	 

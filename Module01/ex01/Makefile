@@ -1,4 +1,3 @@
-
 NAME		= Zombie
 
 CXX			= c++

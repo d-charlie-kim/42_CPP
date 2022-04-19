@@ -25,7 +25,7 @@ void PhoneBook::checkCommand(std::string input) {
 	if (input == "ADD") {
 		addContact();
 	} else if (input == "SEARCH") {
-		if (num == 0)
+		if (_num == 0)
 			emptyPhoneBook();
 		else
 			searchContact();
@@ -43,14 +43,14 @@ void PhoneBook::printManual() {
 
 void PhoneBook::addContact() {
 	int index;
-	index = num % 8;
+	index = _num % 8;
 	std::cout << "\n  + FILL IN THE FORM +\n\n";
 	contacts[index].setFirstName();
 	contacts[index].setLastName();
 	contacts[index].setNickName();
 	contacts[index].setPhoneNumber();
 	contacts[index].setDarkestSecret();
-	num++;
+	_num++;
 }
 
 void PhoneBook::printNames(std::string name) {
@@ -83,7 +83,7 @@ bool PhoneBook::checkIndex(std::string index) {
 		int i = 0;
 		std::stringstream ssInt(index);
 		ssInt >> i;
-		if (num > 8 || num > i)
+		if (_num > 8 || _num > i)
 	 		return true;
 		else
 			return false;
@@ -120,7 +120,7 @@ void PhoneBook::contactSelecting() {
 void PhoneBook::printPhoneBook() {
 	std::cout << "\n              + PHONE BOOK +\n";
 	drawTableTop();
-	for (int i = 0; i < num; i++) {
+	for (int i = 0; i < _num; i++) {
 		if (i == 8)
 			break ;
 		std::cout << "|         " << i << "|";
