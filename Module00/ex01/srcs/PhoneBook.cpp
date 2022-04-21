@@ -5,13 +5,13 @@ PhoneBook::PhoneBook()
 
 PhoneBook::~PhoneBook() {}
 
-void PhoneBook::drawTableTop() {
+void PhoneBook::drawTableTop() const{
 	std::cout << "+――――――――――+――――――――――+――――――――――+――――――――――+\n";
 	std::cout << "|     INDEX|FIRST NAME| LAST NAME|  NICKNAME|\n";
  	std::cout << "+――――――――――+――――――――――+――――――――――+――――――――――+\n";
 }
 
-void PhoneBook::drawTableRow() {
+void PhoneBook::drawTableRow() const{
 	std::cout << "+――――――――――+――――――――――+――――――――――+――――――――――+\n";
 }
 
@@ -40,7 +40,7 @@ void PhoneBook::checkCommand(std::string input) {
 		return ;
 }
 
-void PhoneBook::printManual() {
+void PhoneBook::printManual() const{
 	std::cout << "\n  + VALID  COMMANDS +\n";
 	std::cout << "[ ADD | SEARCH | EXIT ]\n";
 	std::cout << "\n" << "COMMAND: ";
@@ -78,7 +78,7 @@ void PhoneBook::printContact(int index) {
 	std::cout << "|\n";
 }
 
-void PhoneBook::emptyPhoneBook() {
+void PhoneBook::emptyPhoneBook() const{
 	std::cout << "\n!!! PHONE BOOK IS EMPTY !!!\n";
 }
 
@@ -97,7 +97,7 @@ bool PhoneBook::checkIndex(std::string index) {
 		return false;
 }
 
-void PhoneBook::IndexError() {
+void PhoneBook::IndexError() const{
 	std::cout << "\n!!! PLEASE ENTER VALID INDEX !!!\n";
 }
 
