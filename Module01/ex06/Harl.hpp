@@ -15,6 +15,10 @@ class Harl {
 	 void info();
 	 void warning();
 	 void error();
+
+	 typedef void (Harl::*FuncPtr)(void);
+	 FuncPtr _pFunc[4];
+	 std::string _levels[4];
 };
 
 #endif

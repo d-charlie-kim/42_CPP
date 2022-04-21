@@ -5,10 +5,8 @@ CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 INC			= -I ./includes 
 RM			= rm -f
 
-SRCS		= $(addprefix ./srcs/, \
-						main.cpp \
-						Harl.cpp \
-						)
+SRCS		= main.cpp \
+				Harl.cpp \
 
 OBJS		= $(SRCS:.cpp=.o)
 
