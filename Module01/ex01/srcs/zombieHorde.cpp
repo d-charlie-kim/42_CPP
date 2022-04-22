@@ -1,4 +1,4 @@
-#include "Zombie.hpp"
+#include "../includes/Zombie.hpp"
 
 Zombie* zombieHorde(int N, std::string name) {
 	Zombie *zombie = new (std::nothrow) Zombie[N];

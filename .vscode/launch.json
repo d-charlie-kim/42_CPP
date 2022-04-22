@@ -8,7 +8,7 @@
 			"type": "lldb",
 			"request": "launch",
 			"name": "Debug",
-			"program": "${workspaceFolder}/Module00/ex00/megaphone",
+			"program": "${workspaceFolder}",
 			"args": ["!!"],
 			"cwd": "${workspaceFolder}"
 		}

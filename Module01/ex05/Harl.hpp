@@ -16,9 +16,15 @@ class Harl {
 	 void warning();
 	 void error();
 
-	 typedef void (Harl::*FuncPtr)(void);
-	 FuncPtr _pFunc[4];
+	 void (Harl::*_pFunc[4])();
 	 std::string _levels[4];
 };
 
 #endif
+
+/* 
+	이렇게 typedef 사용하면 멤버 함수 포인터를 선언하기 편하다.
+	
+	typedef void (Harl::*FuncPtr)(void);
+	FuncPtr _pFunc[4];
+*/

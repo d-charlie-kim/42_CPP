@@ -14,7 +14,6 @@ Harl::Harl() {
 Harl::~Harl() {}
 
 void Harl::complain(std::string level) {
-	
 	for (int i = 0; i < 4; i++) {
 		if (_levels[i] == level) {
 			(this->*_pFunc[i])();

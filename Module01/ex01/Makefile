@@ -2,7 +2,7 @@ NAME		= Zombie
 
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
-INC			= -I ./includes 
+INC			= -I ./includes
 RM			= rm -f
 
 SRCS		= $(addprefix ./srcs/, \
