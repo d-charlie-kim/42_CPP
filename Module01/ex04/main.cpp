@@ -2,7 +2,7 @@
 #include <iostream>
 
 int replacing(std::string &filename, std::string& s1, std::string& s2) {
-	if (filename.empty() || s1.empty() || s2.empty()) {
+	if (filename.empty() || s1.empty()) {
 		std::cout << "Error\n: String is Empty\n";
 		return (1);
 	}
@@ -16,7 +16,7 @@ int replacing(std::string &filename, std::string& s1, std::string& s2) {
 	std::string temp = filename.c_str();
 	temp += ".replace";
 
-	std::ofstream outFile(temp + ".replace");
+	std::ofstream outFile(temp);
 	if (outFile.fail()) {
 		std::cout << "Error\n: Can't open the outFile\n";
 		inFile.close();

@@ -1,12 +1,14 @@
-NAME		= harlFilter
+NAME		= ClapTrap
 
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 INC			= -I ./includes 
 RM			= rm -f
 
-SRCS		= main.cpp \
-				Harl.cpp \
+SRCS		= $(addprefix ./srcs/, \
+						main.cpp \
+						ClapTrap.cpp \
+						)
 
 OBJS		= $(SRCS:.cpp=.o)
 
