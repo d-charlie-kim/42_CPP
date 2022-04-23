@@ -16,7 +16,7 @@ int replacing(std::string &filename, std::string& s1, std::string& s2) {
 	std::string temp = filename.c_str();
 	temp += ".replace";
 
-	std::ofstream outFile(temp.c_str());
+	std::ofstream outFile(temp + ".replace");
 	if (outFile.fail()) {
 		std::cout << "Error\n: Can't open the outFile\n";
 		inFile.close();
