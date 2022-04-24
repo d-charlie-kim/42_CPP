@@ -9,7 +9,7 @@ class ClapTrap {
 	 int _hitPoints;
 	 int _energyPoints;
 	 int _attackDamage;
-
+	
 	public:
 	 ClapTrap();
 	 ClapTrap(std::string name);
