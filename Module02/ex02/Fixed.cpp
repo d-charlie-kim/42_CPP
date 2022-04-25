@@ -115,13 +115,13 @@ bool Fixed::operator!=(const Fixed& other) const {
 }
 
 /* 증감 연산자*/
-Fixed Fixed::operator++(int) {
+const Fixed Fixed::operator++(int) {
 	Fixed temp(*this);
 	_value++;
 	return temp;
 }
 
-Fixed Fixed::operator--(int) {
+const Fixed Fixed::operator--(int) {
 	Fixed temp(*this);
 	_value--;
 	return temp;

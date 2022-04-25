@@ -107,7 +107,7 @@ void PhoneBook::contactSelecting() {
 
 	while (1) {
 		std::cout << "\n + PLEASE SELECT INDEX NUMBER +\n\n" << "INDEX: ";
-		std::getline(std::cin, selectIndex);
+		std::getline(std::cin >> std::ws, selectIndex);
 		if (std::cin.eof())
 			exit(0);
 		if (checkIndex(selectIndex) == false) {

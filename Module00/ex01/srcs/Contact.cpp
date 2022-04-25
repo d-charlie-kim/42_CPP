@@ -7,35 +7,35 @@ Contact::~Contact() {}
 
 void Contact::setFirstName() {
 	std::cout << "First Name: ";
-	std::getline(std::cin, _firstname);
+	std::getline(std::cin >> std::ws, _firstname);
 	if (std::cin.eof())
 		exit(0);
 }
 
 void Contact::setLastName() {
 	std::cout << "Last Name: ";
-	std::getline(std::cin, _lastname);
+	std::getline(std::cin >> std::ws, _lastname);
 	if (std::cin.eof())
 		exit(0);
 }
 
 void Contact::setNickName() {
 	std::cout << "NickName: ";
-	std::getline(std::cin, _nickname);
+	std::getline(std::cin >> std::ws, _nickname);
 	if (std::cin.eof())
 		exit(0);
 }
 
 void Contact::setPhoneNumber() {
 	std::cout << "Phone Number: ";
-	std::getline(std::cin, _phonenumber);
+	std::getline(std::cin >> std::ws, _phonenumber);
 	if (std::cin.eof())
 		exit(0);
 }
 
 void Contact::setDarkestSecret() {
 	std::cout << "Darkest Secret: ";
-	std::getline(std::cin, _darkestsecret);
+	std::getline(std::cin >> std::ws, _darkestsecret);
 	if (std::cin.eof())
 		exit(0);
 }

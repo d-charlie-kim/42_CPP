@@ -27,8 +27,8 @@ class Fixed {
 	 bool operator==(const Fixed& other) const;
 	 bool operator!=(const Fixed& other) const;
 
-	 Fixed operator++(int);
-	 Fixed operator--(int);
+	 const Fixed operator++(int);
+	 const Fixed operator--(int);
 	 Fixed& operator++();
 	 Fixed& operator--();
 

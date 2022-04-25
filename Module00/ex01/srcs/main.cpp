@@ -6,7 +6,7 @@ int main(void) {
 	std::string input;
 	while (1) {
 		phoneBook.printManual();
-		std::getline(std::cin, input);
+		std::getline(std::cin >> std::ws, input);
 		if (std::cin.eof())
 			exit(0);
 		phoneBook.checkCommand(input);
