@@ -85,7 +85,7 @@ void ClapTrap::takeDamage(unsigned int amount) {
 	}
 }
 
-void ClapTrap::rePaired(unsigned int amount) {
+void ClapTrap::beRepaired(unsigned int amount) {
 	if (_hitPoints == 0)
 		std::cout << "[ FAIL : " << _name << " is already DEAD ]\n";
 	else if (_energyPoints > 0) {

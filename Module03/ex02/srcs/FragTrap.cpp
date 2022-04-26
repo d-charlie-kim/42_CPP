@@ -65,7 +65,7 @@ void FragTrap::takeDamage(unsigned int amount) {
 	}
 }
 
-void FragTrap::rePaired(unsigned int amount) {
+void FragTrap::beRepaired(unsigned int amount) {
 	if (_hitPoints == 0)
 		std::cout << "[ FAIL! FragTrap: " << _name << " is already DEAD ]\n";
 	else if (_energyPoints > 0) {

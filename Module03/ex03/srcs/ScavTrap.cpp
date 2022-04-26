@@ -65,7 +65,7 @@ void ScavTrap::takeDamage(unsigned int amount) {
 	}
 }
 
-void ScavTrap::rePaired(unsigned int amount) {
+void ScavTrap::beRepaired(unsigned int amount) {
 	if (_hitPoints == 0)
 		std::cout << "[ FAIL! ScavTrap: " << _name << " is already DEAD ]\n";
 	else if (_energyPoints > 0) {
