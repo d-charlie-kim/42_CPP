@@ -12,6 +12,8 @@ SRCS		= $(addprefix ./srcs/, \
 						Cat.cpp \
 						WrongAnimal.cpp \
 						WrongCat.cpp \
+						WrongDog.cpp \
+						Brain.cpp \
 						)
 
 OBJS		= $(SRCS:.cpp=.o)

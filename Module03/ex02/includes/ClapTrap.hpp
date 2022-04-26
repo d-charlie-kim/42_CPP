@@ -13,8 +13,8 @@ class ClapTrap {
 	public:
 	 ClapTrap();
 	 ClapTrap(std::string name);
-	 ~ClapTrap();
 	 ClapTrap(const ClapTrap& origin);
+	 ~ClapTrap();
 	 ClapTrap& operator=(const ClapTrap& other);
 
 	 std::string getName() const;

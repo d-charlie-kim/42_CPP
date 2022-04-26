@@ -2,10 +2,11 @@
 #define CAT_HPP
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat : public Animal {
 	private:
-	 std::string type;
+	 Brain *_brainPTR;
 
 	public:
 	 Cat();
@@ -13,8 +14,9 @@ class Cat : public Animal {
 	 Cat(const Cat& origin);
 	 Cat& operator=(const Cat& other);
 
-	 virtual const std::string& getType() const;
 	 virtual void makeSound() const;
+	 void sayIdea(int index) const;
+	 void putInBrain(std::string& idea, int index);
 };
 
 #endif

@@ -1,47 +1,56 @@
-#include "Animal.hpp"
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
+#include "../includes/Animal.hpp"
+#include "../includes/Dog.hpp"
+#include "../includes/Cat.hpp"
+#include "../includes/WrongAnimal.hpp"
+#include "../includes/WrongCat.hpp"
+#include "../includes/WrongDog.hpp"
 
 int main() {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
 
-	std::cout << "type:  " << j->getType() << " " << std::endl;
-	std::cout << "type:  " << i->getType() << " " << std::endl;
+	std::cout << "\n ----// Make Sound Ideas TEST //---- \n";
+	
+	Animal *zoo[10];
+	
+	for (int i = 0; i < 5; i++)
+		zoo[i] = new Dog();
+	for (int i = 5; i < 10; i++)
+		zoo[i] = new Cat();
+	for (int i = 0; i < 10; i++)
+		zoo[i]->makeSound();
+	for (int i = 0; i < 10; i++)
+		delete zoo[i];
 
-	i->makeSound(); //will output the cat sound! j->makeSound();
-	j->makeSound(); //will output the cat sound! j->makeSound();
+	std::cout << "\n ----// Deep Copy TEST //---- \n";
 
-	meta->makeSound();
+	Dog dog1;
+	Dog dog2;
+	dog2 = dog1;
+	for (int i = 0; i < 10; i++)
+		dog1.sayIdea(i);
+	std::cout << "-- -- -- --\n";
+	for (int i = 0; i < 10; i++)
+		dog2.putInBrain("NEW", i);
+	for (int i = 0; i < 10; i++)
+		dog1.sayIdea(i);
+	std::cout << "-- -- -- --\n";
+	for (int i = 0; i < 10; i++)
+		dog2.sayIdea(i);
 
-	std::cout << std::endl << "-----------" << std::endl;
+	// std::cout << "\n ----// Swallow Copy TEST //---- \n";
 
-	const WrongAnimal* wAnimal = new WrongAnimal();
-	const WrongAnimal* wCat = new WrongCat();
+	// WrongDog wdog1;
+	// WrongDog wdog2;
+	// wdog2 = wdog1;
+	// for (int i = 0; i < 10; i++)
+	// 	wdog1.sayIdea(i);
+	// std::cout << "-- -- -- --\n";
+	// for (int i = 0; i < 10; i++)
+	// 	wdog2.putInBrain("NEW", i);
+	// for (int i = 0; i < 10; i++)
+	// 	wdog1.sayIdea(i);
+	// std::cout << "-- -- -- --\n";
+	// for (int i = 0; i < 10; i++)
+	// 	wdog2.sayIdea(i);
 
-	std::cout << wCat->getType() << "  !" << std::endl;
-	std::cout << wAnimal->getType() << "  !" << std::endl;
-	wAnimal->makeSound();
-	wCat->makeSound();
-
-	std::cout << std::endl;
-
-	delete meta;
-	delete i;
-	delete j;
-	delete wCat;
-	delete wAnimal;
-
-	return 0;
+	// system("leaks zoo");
 }
-
-/*
-
-1. 가상 함수에 대한 이해 (virtual 붙이는거)
-2. 안 붙이면 어떻게 되는지 (안 붙인게 WrongAnimal)
-3. 개념과 차이만 이해하기.
-
-*/

@@ -22,8 +22,8 @@ int main() {
 	const WrongAnimal* wAnimal = new WrongAnimal();
 	const WrongAnimal* wCat = new WrongCat();
 
+	std::cout << std::endl;
 	std::cout << wCat->getType() << "  !" << std::endl;
-	std::cout << wAnimal->getType() << "  !" << std::endl;
 	wAnimal->makeSound();
 	wCat->makeSound();
 
