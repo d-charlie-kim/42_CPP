@@ -59,14 +59,21 @@ int Fixed::toInt() const {
 
 /* 사칙연산 */
 const Fixed Fixed::operator+(const Fixed& other) const {
-	return (Fixed(this->toFloat() + other.toFloat()));
+	Fixed temp(*this);
+	temp._value += other._value;
+	return (temp);
 }
+
 const Fixed Fixed::operator-(const Fixed& other) const {
-	return (Fixed(this->toFloat() - other.toFloat()));
+	Fixed temp(*this);
+	temp._value -= other._value;
+	return (temp);
 }
+
 const Fixed Fixed::operator*(const Fixed& other) const {
 	return (Fixed(this->toFloat() * other.toFloat()));
 }
+
 const Fixed Fixed::operator/(const Fixed& other) const {
 	return (Fixed(this->toFloat() / other.toFloat()));
 }
