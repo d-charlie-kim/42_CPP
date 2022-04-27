@@ -20,10 +20,6 @@ WrongCat& WrongCat::operator=(const WrongCat& other){
 	return *this;
 }
 
-const std::string& WrongCat::getType() const{
-	return type;
-}
-
 void WrongCat::makeSound() const{
 	std::cout << "[ ... ]\n";
 }

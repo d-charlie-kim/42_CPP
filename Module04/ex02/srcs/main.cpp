@@ -53,4 +53,6 @@ int main() {
 	// 	wdog2.sayIdea(i);
 
 	system("leaks zoo");
+
+	//Animal animal;
 }

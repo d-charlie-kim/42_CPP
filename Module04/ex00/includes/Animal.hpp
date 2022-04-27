@@ -13,8 +13,8 @@ class Animal {
 	 Animal(const Animal& origin);
 	 Animal& operator=(const Animal& other);
 
-	 void setType(std::string type_);
-	 virtual const std::string& getType() const;
+	 const std::string& getType() const;
+	 
 	 virtual void makeSound() const;
 };
 

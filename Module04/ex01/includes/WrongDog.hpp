@@ -10,11 +10,11 @@ class WrongDog : public WrongAnimal {
 
 	public:
 	 WrongDog();
-	 ~WrongDog();
+	 virtual ~WrongDog();
 	 WrongDog(const WrongDog& origin);
 	 WrongDog& operator=(const WrongDog& other);
 
-	 void makeSound() const;
+	 virtual void makeSound() const;
 	 void sayIdea(int index) const;
 	 void putInBrain(const std::string& idea, int index);
 };

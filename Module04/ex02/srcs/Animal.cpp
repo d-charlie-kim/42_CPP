@@ -22,7 +22,3 @@ Animal& Animal::operator=(const Animal& other) {
 const std::string& Animal::getType() const{
 	return type;
 }
-
-void Animal::setType(std::string type_) {
-	type = type_;
-}

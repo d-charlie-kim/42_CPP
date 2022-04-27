@@ -23,10 +23,6 @@ const std::string& WrongAnimal::getType() const{
 	return type;
 }
 
-void WrongAnimal::setType(std::string type_) {
-	type = type_;
-}
-
 void WrongAnimal::makeSound() const{
 	std::cout << "@#$%@#$%...\n";
 }
