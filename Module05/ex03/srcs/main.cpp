@@ -3,6 +3,7 @@
 #include "../includes/PresidentialPardonForm.hpp"
 #include "../includes/RobotomyRequestForm.hpp"
 #include "../includes/ShrubberyCreationForm.hpp"
+#include "../includes/Intern.hpp"
 
 int main(void) {
   Bureaucrat bu("bu", 150);
@@ -10,16 +11,15 @@ int main(void) {
   Bureaucrat au("au", 100);
   Bureaucrat cr("cr", 50);
   Bureaucrat at("at", 5);
+  Intern     someRandomIntern;
 
-  Form *forms[3] = {new ShrubberyCreationForm("Shru"),
-                    new RobotomyRequestForm("Robo"),
-                    new PresidentialPardonForm("Pres")};
-  std::cout << bu << '\n'
-            << re << '\n'
-            << au << '\n'
-            << cr << '\n'
-            << at << '\n'
-            << std::endl;
+  Form *forms[3] = {
+      someRandomIntern.makeForm("shrubbery creation", "ShrubberyTarget"),
+      someRandomIntern.makeForm("robotomy request", "robotoTarget"),
+      someRandomIntern.makeForm("presidential pardon", "presidentialTarget")};
+
+  someRandomIntern.makeForm("nonoTypeType", "asdfasdf");
+
   std::cout << "[ No Sign Error Test ]\n\n";
   for (int i = 0; i < 3; i++) {
     bu.executeForm(*forms[i]);

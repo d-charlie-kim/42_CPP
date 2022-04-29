@@ -12,6 +12,7 @@ SRCS		= $(addprefix ./srcs/, \
 						PresidentialPardonForm.cpp \
 						RobotomyRequestForm.cpp \
 						ShrubberyCreationForm.cpp \
+						Intern.cpp \
 						)
 
 OBJS		= $(SRCS:.cpp=.o)

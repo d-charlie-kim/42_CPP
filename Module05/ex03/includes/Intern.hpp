@@ -6,6 +6,8 @@
 
 class Intern {
 	private:
+	 std::string forms[3];
+
 	 Form *createShrubberyForm(const std::string& target);
 	 Form *createRobotomyForm(const std::string& target);
 	 Form *createPresidentialForm(const std::string& target);
