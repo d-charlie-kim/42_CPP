@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <exception>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat {
 	private:
@@ -33,8 +36,12 @@ class Bureaucrat {
 	 void	setGrade(int grade);
 	 int 	getGrade() const;
 
-	 void incrementGrade();
-	 void decrementGrade();
+	 void	incrementGrade();
+	 void	decrementGrade();
+
+	 void	signForm(Form &form) const;
+
+	 void	executeForm(const Form& form);
 };
 
 std::ostream& operator<<(std::ostream &ost, const Bureaucrat &src);

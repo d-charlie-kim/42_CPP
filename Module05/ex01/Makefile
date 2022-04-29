@@ -1,4 +1,4 @@
-NAME		= bureaucrat
+NAME		= Form
 
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
@@ -8,6 +8,7 @@ RM			= rm -f
 SRCS		= $(addprefix ./srcs/, \
 						main.cpp \
 						Bureaucrat.cpp \
+						Form.cpp \
 						)
 
 OBJS		= $(SRCS:.cpp=.o)
