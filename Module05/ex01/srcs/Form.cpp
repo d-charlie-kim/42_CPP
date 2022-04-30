@@ -62,7 +62,8 @@ bool Form::getIsSigned() const {
 void Form::beSigned(const Bureaucrat& bureaucrat) {
 	if (this->_gradeForSign < bureaucrat.getGrade()) {
 		std::cout << "FAIL! < " << bureaucrat.getName() << " >";
-		std::cout << "has too low grade to sign\n";
+		std::cout << " couldn't sign < " << this->getName();
+		std::cout << " >\n      because has too low grade to sign\n";
 		throw GradeTooLowException();
 	}
 	else if (this->_isSigned)
@@ -91,5 +92,5 @@ const char *Form::GradeTooLowException::what() const throw() {
 }
 
 const char *Form::FormIsAlreadySigned::what() const throw() {
-	return ("ERROR: Form is already signed");
+	return ("OH! Form is already signed");
 }

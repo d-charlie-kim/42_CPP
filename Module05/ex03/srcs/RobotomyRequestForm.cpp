@@ -3,13 +3,13 @@
 #include <cstdlib>
 
 RobotomyRequestForm::RobotomyRequestForm()
-: Form("RobotomyRF", 25, 5), _target("default") {}
+: Form("RobotomyRF", 72, 45), _target("default") {}
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
-: Form("RobotomyRF", 25, 5), _target(target) {}
+: Form("RobotomyRF", 72, 45), _target(target) {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& origin)
-: Form("RobotomyRF", 25, 5), _target(origin.getTarget()) {}
+: Form("RobotomyRF", 72, 45), _target(origin.getTarget()) {}
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
@@ -28,6 +28,8 @@ void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
 	std::srand(time(0));
 	if (std::rand() % 2)
 		std::cout << "SUCCESS: < " << this->getTarget() << " > has been robotomized.\n";
-	else
+	else {
+		std::cout << "GOOD! < " << this->getName() << " > " << "executed < " << this->getName() << " >\nBUT ";
 		throw RobotomizeFailException();
+	}
 }

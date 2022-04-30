@@ -29,13 +29,10 @@ Form *Intern::makeForm(const std::string& formName, const std::string& target) {
 		switch (index) {
 			case 0:
 				return (createShrubberyForm(target));
-				// break ;
 			case 1:
 				return (createRobotomyForm(target));
-				// break ;
 			case 2:
 				return (createPresidentialForm(target));
-				// break ;
 			default:
 				throw InternException();
 		}

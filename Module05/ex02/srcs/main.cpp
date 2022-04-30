@@ -5,51 +5,48 @@
 #include "../includes/ShrubberyCreationForm.hpp"
 
 int main(void) {
-  Bureaucrat bu("bu", 150);
-  Bureaucrat re("re", 140);
-  Bureaucrat au("au", 100);
-  Bureaucrat cr("cr", 50);
-  Bureaucrat at("at", 5);
+	Bureaucrat one("one", 150);
+	Bureaucrat two("two", 90);
+	Bureaucrat three("three", 50);
+	Bureaucrat four("four", 30);
+	Bureaucrat five("five", 4);
 
-  Form *forms[3] = {new ShrubberyCreationForm("Shru"),
-                    new RobotomyRequestForm("Robo"),
-                    new PresidentialPardonForm("Pres")};
-  std::cout << bu << '\n'
-            << re << '\n'
-            << au << '\n'
-            << cr << '\n'
-            << at << '\n'
-            << std::endl;
-  std::cout << "[ No Sign Error Test ]\n\n";
-  for (int i = 0; i < 3; i++) {
-    bu.executeForm(*forms[i]);
-    re.executeForm(*forms[i]);
-    au.executeForm(*forms[i]);
-    cr.executeForm(*forms[i]);
-    at.executeForm(*forms[i]);
-    std::cout << '\n';
-  }
+	Form *forms[3] = {new ShrubberyCreationForm("Shrubbery"),
+					new RobotomyRequestForm("Robotomy"),
+					new PresidentialPardonForm("Presidential")};
 
-  std::cout << "\n[ Can you Sign Test ]\n\n";
-  for (int i = 0; i < 3; i++) {
-    bu.signForm(*forms[i]);
-    re.signForm(*forms[i]);
-    au.signForm(*forms[i]);
-    cr.signForm(*forms[i]);
-    at.signForm(*forms[i]);
-    std::cout << '\n';
-  }
+	std::cout << one << two << three << four << five << std::endl;
 
-  std::cout << "\n[ Can you Exec Test ]\n\n";
-  for (int i = 0; i < 3; i++) {
-    bu.executeForm(*forms[i]);
-    re.executeForm(*forms[i]);
-    au.executeForm(*forms[i]);
-    cr.executeForm(*forms[i]);
-    at.executeForm(*forms[i]);
-    std::cout << '\n';
-  }
-  for (int i = 0; i < 3; i++) {
-    delete forms[i];
-  }
+	std::cout << "[ No Sign Error Test ]\n\n";
+	for (int i = 0; i < 3; i++) {
+		one.executeForm(*forms[i]);
+		two.executeForm(*forms[i]);
+		three.executeForm(*forms[i]);
+		four.executeForm(*forms[i]);
+		five.executeForm(*forms[i]);
+		std::cout << std::endl;
+	}
+
+	std::cout << "\n[ Sign Test ]\n\n";
+	for (int i = 0; i < 3; i++) {
+		one.signForm(*forms[i]);
+		two.signForm(*forms[i]);
+		three.signForm(*forms[i]);
+		four.signForm(*forms[i]);
+		five.signForm(*forms[i]);
+		std::cout << std::endl;
+	}
+
+	std::cout << "\n[ Execute Test ]\n\n";
+	for (int i = 0; i < 3; i++) {
+		one.executeForm(*forms[i]);
+		two.executeForm(*forms[i]);
+		three.executeForm(*forms[i]);
+		four.executeForm(*forms[i]);
+		five.executeForm(*forms[i]);
+		std::cout << std::endl;
+	}
+
+	for (int i = 0; i < 3; i++)
+		delete forms[i];
 }
