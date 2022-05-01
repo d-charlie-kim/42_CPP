@@ -67,5 +67,6 @@
 		"memory_resource": "cpp",
 		"fstream": "cpp",
 		"stack": "cpp"
-	}
+	},
+	"C_Cpp.errorSquiggles": "Disabled"
 }
