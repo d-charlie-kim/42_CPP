@@ -83,7 +83,7 @@ void Convert::detectType() {
 }
 
 bool Convert::detectChar() {
-	double	check = strtod(_input, NULL);
+	double	check = strtod(_input.c_str(), 0);
 	int		temp = static_cast<int>(_input[0]);
 	if (check == 0 && _strlen == 1 && temp < 128 && temp > -129)
 		return false;
