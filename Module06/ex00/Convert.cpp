@@ -1,5 +1,8 @@
-#include "Convert.hpp"
 #include <string>
+#include <iostream>
+#include <cstdlib>
+#include <exception>
+#include "Convert.hpp"
 
 Convert::Convert() {}
 
@@ -7,6 +10,10 @@ Convert::~Convert() {}
 
 Convert::Convert(const std::string& input)
 : _input(input), _types("cfid") {
+	_pFunc[0] = &Convert::fromChar;
+	_pFunc[1] = &Convert::fromFloat;
+	_pFunc[2] = &Convert::fromInt;
+	_pFunc[3] = &Convert::fromDouble;
 	_value = 0;
 	_strlen = _input.length();
 	_type = -1;
@@ -21,7 +28,7 @@ Convert::Convert(const Convert& origin)
 	*this = origin;
 }
 
-Convert& Convert::operator=(cost Convert& other) {
+Convert& Convert::operator=(const Convert& other) {
 	_c = other._c;
 	_f = other._f;
 	_i = other._i;
@@ -33,14 +40,14 @@ Convert& Convert::operator=(cost Convert& other) {
 }
 
 void Convert::fromToAnother() const {
-	void Convert::*pFunc[4]();
+	// void Convert::*pFunc[4]() const;
 
-	pFunc[0] = &Convert::fromChar;
-	pFunc[1] = &Convert::fromFloat;
-	pFunc[2] = &Convert::fromInt;
-	pFunc[3] = &Convert::fromDouble;
+	// pFunc[0] = &Convert::fromChar;
+	// pFunc[1] = &Convert::fromFloat;
+	// pFunc[2] = &Convert::fromInt;
+	// pFunc[3] = &Convert::fromDouble;
 
-	this->*pFunc[_type];
+	(this->*_pFunc[_type])();
 }
 
 void Convert::fromChar() const {
@@ -80,6 +87,8 @@ bool Convert::detectChar() {
 	int		temp = static_cast<int>(_input[0]);
 	if (check == 0 && _strlen == 1 && temp < 128 && temp > -129)
 		return false;
+	else if (_input[0] == '0')
+		return false;
 	_type = 0;
 	return true;
 }
@@ -97,6 +106,14 @@ bool Convert::detectInt() {
 bool Convert::detectDouble() {
 	_type = 3;
 	return true;
+}
+
+const std::string& Convert::getInput() const {
+	return _input;
+}
+
+int Convert::getType() const {
+	return _type;
 }
 
 const char *Convert::DefaultErrException::what() const throw() {

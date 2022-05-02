@@ -1,7 +1,7 @@
 #include <iostream>
+#include <exception>
 #include <cstdlib>
-
-// #include "Convert.hpp"
+#include "Convert.hpp"
 
 int main(int argc, char *argv[]) {
 	if (argc == 1) {
@@ -10,14 +10,17 @@ int main(int argc, char *argv[]) {
 	}
 	for (int i = 1; i < argc; i++) {
 		double num;
-		num = strtod(argv[i], NULL);
+		num = strtod(argv[i], 0, 0);
 		std::cout << num << std::endl;
-		// std::cout << static_cast<char>(num) << std::endl
-		// std::cout << static_cast<float>(num) << std::endl;
+		std::cout << static_cast<char>(num) << std::endl;
+		std::cout << static_cast<float>(num) << std::endl;
 		// try {
 		// 	Convert scalar(argv[i]);
-		// 	convert.detectType();
-		// 	convert.fromToAnother();
+		// 	scalar.detectType();
+		// 	scalar.fromToAnother();
+		// 	std::cout << scalar.getType();
+		// } catch (const std::exception &e) {
+		// 	std::cout << e.what() << std::endl;
 		// }
 	}
 	std::cout << "\nDONE.\n";

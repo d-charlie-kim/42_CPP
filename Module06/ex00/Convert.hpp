@@ -1,15 +1,13 @@
 #ifndef CONVERT_HPP
 #define CONVERT_HPP
 
-#include <iostream>
-#include <exception>
-
 class Convert {
 	public:
 	 Convert();
+	 Convert(const std::string& input);
 	 ~Convert();
 	 Convert(const Convert& origin);
-	 Convert& operator=(cost Convert& other);
+	 Convert& operator=(const Convert& other);
 
 	 void fromToAnother() const;
 	 void fromChar() const;
@@ -18,6 +16,7 @@ class Convert {
 	 void fromFloat() const;
 
 	 const std::string& getInput() const;
+	 int			getType() const;
 
 	 void	detectType();
 	 bool	detectChar();
@@ -30,7 +29,8 @@ class Convert {
 	 double				_value;
 	 int				_strlen;
 
-	 static const std::string	_types;
+	 const std::string	_types;
+	 void (Convert::*_pFunc[4])() const;
 
 	 int		_type;
 	 char		_c;
@@ -42,6 +42,6 @@ class Convert {
 		public:
 		 const char *what() const throw();
 	 };
-}
+};
 
 #endif

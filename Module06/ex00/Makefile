@@ -6,6 +6,7 @@ INC			= -I ./includes
 RM			= rm -f
 
 SRCS		= main.cpp \
+				Convert.cpp \
 
 OBJS		= $(SRCS:.cpp=.o)
 
