@@ -11,8 +11,9 @@ int main(int argc, char *argv[]) {
 	for (int i = 1; i < argc; i++) {
 		double num;
 		num = strtod(argv[i], NULL);
-		std::cout << static_cast<char>(num) << std::endl;
-		std::cout << static_cast<float>(num) << std::endl;
+		std::cout << num << std::endl;
+		// std::cout << static_cast<char>(num) << std::endl
+		// std::cout << static_cast<float>(num) << std::endl;
 		// try {
 		// 	Convert scalar(argv[i]);
 		// 	convert.detectType();

@@ -17,12 +17,7 @@ class Convert {
 	 void fromDouble() const;
 	 void fromFloat() const;
 
-	 char toChar() const;
-	 int toInt() const;
-	 float toFloat() const;
-	 double toDouble() const;
-
-	//  const std::string& getInput() const;
+	 const std::string& getInput() const;
 
 	 void	detectType();
 	 bool	detectChar();
@@ -39,9 +34,9 @@ class Convert {
 
 	 int		_type;
 	 char		_c;
+	 float		_f;
 	 int		_i;
 	 double		_d;
-	 float		_f;
 
 	 class DefaultErrException : public std::exception {
 		public:
