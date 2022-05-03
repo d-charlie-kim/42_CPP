@@ -10,16 +10,14 @@ class Convert {
 	 Convert& operator=(const Convert& other);
 
 	 void fromToAnother() const;
-	 void fromChar() const;
 	 void fromInt() const;
 	 void fromDouble() const;
 	 void fromFloat() const;
 
 	 const std::string& getInput() const;
-	 int			getType() const;
+	 int				getType() const;
 
 	 void	detectType();
-	 bool	detectChar();
 	 bool	detectInt();
 	 bool	detectDouble();
 	 bool	detectFloat();
@@ -30,7 +28,7 @@ class Convert {
 	 int				_strlen;
 
 	 const std::string	_types;
-	 void (Convert::*_pFunc[4])() const;
+	 void (Convert::*_pFunc[3])() const;
 
 	 int		_type;
 	 char		_c;

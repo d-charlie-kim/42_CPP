@@ -9,11 +9,10 @@ Convert::Convert() {}
 Convert::~Convert() {}
 
 Convert::Convert(const std::string& input)
-: _input(input), _types("cfid") {
-	_pFunc[0] = &Convert::fromChar;
-	_pFunc[1] = &Convert::fromFloat;
-	_pFunc[2] = &Convert::fromInt;
-	_pFunc[3] = &Convert::fromDouble;
+: _input(input), _types("fid") {
+	_pFunc[0] = &Convert::fromFloat;
+	_pFunc[1] = &Convert::fromInt;
+	_pFunc[2] = &Convert::fromDouble;
 	_value = 0;
 	_strlen = _input.length();
 	_type = -1;
@@ -29,6 +28,9 @@ Convert::Convert(const Convert& origin)
 }
 
 Convert& Convert::operator=(const Convert& other) {
+	_pFunc[0] = other._pFunc[0];
+	_pFunc[1] = other._pFunc[1];
+	_pFunc[2] = other._pFunc[2];
 	_c = other._c;
 	_f = other._f;
 	_i = other._i;
@@ -40,20 +42,7 @@ Convert& Convert::operator=(const Convert& other) {
 }
 
 void Convert::fromToAnother() const {
-	// void Convert::*pFunc[4]() const;
-
-	// pFunc[0] = &Convert::fromChar;
-	// pFunc[1] = &Convert::fromFloat;
-	// pFunc[2] = &Convert::fromInt;
-	// pFunc[3] = &Convert::fromDouble;
-
 	(this->*_pFunc[_type])();
-}
-
-void Convert::fromChar() const {
-	// toInt
-	// toDouble
-	// tofloat
 }
 
 void Convert::fromInt() const {
@@ -78,33 +67,35 @@ void Convert::fromFloat() const {
 }
 
 void Convert::detectType() {
-	if (!detectChar() && !detectFloat() && !detectInt() && !detectDouble())
+	if (!detectFloat() && !detectInt() && !detectDouble())
 		throw DefaultErrException();
 }
 
-bool Convert::detectChar() {
-	double	check = strtod(_input.c_str(), 0);
-	int		temp = static_cast<int>(_input[0]);
-	if (check == 0 && _strlen == 1 && temp < 128 && temp > -129)
-		return false;
-	else if (_input[0] == '0')
-		return false;
+// bool Convert::detectChar() {
+// 	double	check = strtod(_input.c_str(), 0);
+// 	int		temp = static_cast<int>(_input[0]);
+// 	if (check == 0 && _strlen == 1 && temp < 128 && temp > -129)
+// 		return false;
+// 	else if (_input[0] == '0')
+// 		return false;
+// 	_type = 0;
+// 	return true;
+// }
+
+bool Convert::detectFloat() {
+	double check = strtod(_input.c_str(), 0);
+	if (!check)
 	_type = 0;
 	return true;
 }
 
-bool Convert::detectFloat() {
+bool Convert::detectInt() {
 	_type = 1;
 	return true;
 }
 
-bool Convert::detectInt() {
-	_type = 2;
-	return true;
-}
-
 bool Convert::detectDouble() {
-	_type = 3;
+	_type = 2;
 	return true;
 }
 

@@ -8,22 +8,25 @@ int main(int argc, char *argv[]) {
 		std::cout << "ERROR: Parameter required." << std::endl;
 		return 1;
 	}
-	for (int i = 1; i < argc; i++) {
-		std::cout << argv[i] << std::endl;
-		// double num;
-		// num = strtod(argv[i], 0);
-		// std::cout << num << std::endl;
-		// std::cout << static_cast<char>(num) << std::endl;
-		// std::cout << static_cast<float>(num) << std::endl;
-		try {
-			Convert scalar(argv[i]);
-			scalar.detectType();
-			scalar.fromToAnother();
-			std::cout << scalar.getType();
-		} catch (const std::exception &e) {
-			std::cout << e.what() << std::endl;
-		}
-	}
+	// for (int i = 1; i < argc; i++) {
+	// 	std::cout << "input: " << argv[i] << std::endl;
+	// 	// double num;
+	// 	// num = strtod(argv[i], 0);
+	// 	// std::cout << num << std::endl;
+	// 	// std::cout << static_cast<char>(num) << std::endl;
+	// 	// std::cout << static_cast<float>(num) << std::endl;
+	// 	try {
+	// 		char * ptr;
+	// 		Convert scalar(argv[i]);
+	// 		// scalar.detectType();
+	// 		// scalar.fromToAnother();
+	// 		std::cout << "to double: " << strtod(argv[i], &ptr) << std::endl;
+	// 		std::cout << "left in buffer: " << *ptr << std::endl;
+	// 		// std::cout << "type: " << scalar.getType();
+	// 	} catch (const std::exception &e) {
+	// 		std::cout << e.what() << std::endl;
+	// 	}
+	// }
 	std::cout << "\nDONE.\n";
 	return 0;
 }
