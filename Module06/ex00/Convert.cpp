@@ -2,6 +2,9 @@
 #include <iostream>
 #include <cstdlib>
 #include <exception>
+#include <climits>
+#include <cfloat>
+#include <sstream>
 #include "Convert.hpp"
 
 Convert::Convert() {}
@@ -9,16 +12,18 @@ Convert::Convert() {}
 Convert::~Convert() {}
 
 Convert::Convert(const std::string& input)
-: _input(input), _types("fid") {
-	_pFunc[0] = &Convert::fromFloat;
-	_pFunc[1] = &Convert::fromInt;
+: _input(input), _types("ifd") {
+	_pFunc[0] = &Convert::fromInt;
+	_pFunc[1] = &Convert::fromFloat;
 	_pFunc[2] = &Convert::fromDouble;
-	_value = 0;
 	_strlen = _input.length();
+	_specialFlag = 0;
 	_type = -1;
+	_fFlag = 0;
+	_pointFlag = 0;
 	_c = 0;
-	_f = 0;
 	_i = 0;
+	_f = 0;
 	_d = 0;
 }
 
@@ -32,70 +37,168 @@ Convert& Convert::operator=(const Convert& other) {
 	_pFunc[1] = other._pFunc[1];
 	_pFunc[2] = other._pFunc[2];
 	_c = other._c;
-	_f = other._f;
 	_i = other._i;
+	_f = other._f;
 	_d = other._d;
+	_fFlag = other._fFlag;
+	_pointFlag = other._pointFlag;
 	_type = other._type;
 	_strlen = other._strlen;
-	_value = other._value;
+	_specialFlag = other._specialFlag;
 	return *this;
 }
 
-void Convert::fromToAnother() const {
-	(this->*_pFunc[_type])();
+void Convert::fromToAnother() const{
+	if (_specialFlag)
+		printSpecialValue();
+	else {
+		(this->*_pFunc[_type])();
+	}
+}
+
+void Convert::printSpecialValue() const{
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: " << _input << "f" << std::endl;
+	std::cout << "double: " << _input << std::endl;
 }
 
 void Convert::fromInt() const {
-	// toChar();
-
-	// toDouble();
-	// toFloat();
+	std::cout << "char: ";
+	if (_i < -128 || _i > 127)
+		std::cout << "impossible" << std::endl;
+	else if (_i < 32 || _i > 126)
+		std::cout << "Non displayable" << std::endl;
+	else
+		std::cout << "\'" << static_cast<char>(_i) << "\'" << std::endl;
+	std::cout << "int: " << _i << std::endl;
+	std::cout << "float: " << static_cast<float>(_i) << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(_i) << std::endl;
 }
 
 void Convert::fromDouble() const {
-	// toChar();
-	// toInt();
-
-	// toFloat();
+	std::cout << "char: ";
+	if (_d < -128 || _d > 127)
+		std::cout << "impossible" << std::endl;
+	else if (_d < 32 || _d > 126)
+		std::cout << "Non displayable" << std::endl;
+	else
+		std::cout << "\'" << static_cast<char>(_d) << "\'" << std::endl;
+	std::cout << "int: ";
+	if (_d > INT_MAX || _d < INT_MIN)
+		std::cout << "impossible" << std::endl;
+	else
+		std::cout << static_cast<int>(_d) << std::endl;
+	std::cout << "float: ";
+	if (_d > FLT_MAX || _d < -FLT_MAX)
+		std::cout << "impossible" << std::endl;
+	else
+		std::cout << static_cast<float>(_d) << "f" << std::endl;
+	std::cout << "double: " << _d << std::endl;
 }
 
 void Convert::fromFloat() const {
-	// toChar();
-	// toInt();
-	// toDouble();
-
+	std::cout << "char: ";
+	if (_f < -128 || _f > 127)
+		std::cout << "impossible" << std::endl;
+	else if (_f < 32 || _f > 126)
+		std::cout << "Non displayable" << std::endl;
+	else
+		std::cout << "\'" << static_cast<char>(_f) << "\'" << std::endl;
+	std::cout << "int: ";
+	if (_f > INT_MAX || _f < INT_MIN)
+		std::cout << "impossible" << std::endl;
+	else
+		std::cout << static_cast<int>(_f) << std::endl;
+	std::cout << "float: " << _f << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(_f) << std::endl;
 }
 
-void Convert::detectType() {
-	if (!detectFloat() && !detectInt() && !detectDouble())
-		throw DefaultErrException();
-}
-
-// bool Convert::detectChar() {
-// 	double	check = strtod(_input.c_str(), 0);
-// 	int		temp = static_cast<int>(_input[0]);
-// 	if (check == 0 && _strlen == 1 && temp < 128 && temp > -129)
-// 		return false;
-// 	else if (_input[0] == '0')
-// 		return false;
-// 	_type = 0;
-// 	return true;
-// }
-
-bool Convert::detectFloat() {
-	double check = strtod(_input.c_str(), 0);
-	if (!check)
-	_type = 0;
+bool Convert::checkSpecialValue() {
+	if (_input == "nanf" || _input == "inff" || _input == "+inff" || _input == "-inff") {
+		_type = 1;
+		_input.replace(_strlen - 1, 1, "");
+	}
+	else if (_input == "nan" || _input == "inf" || _input == "+inf" || _input == "-inf")
+		_type = 2;
+	else
+		return false;
+	_specialFlag = 1;
 	return true;
 }
 
+bool Convert::checkValidate() {
+	int i = 0;
+	if (_strlen != 1 && (_input[0] == '+' || _input[0] == '-'))
+		i++;
+	for (;i < _strlen; i++) {
+		if (_input[i] == '.') {
+			_pointFlag += 1;
+		}
+		else if (_input[i] == 'f') {
+			_fFlag += 1;
+		}
+		else if (_input[i] >= '0' && _input[i] <= '9')
+			continue ;
+		else
+			return false;
+	}
+	return true;
+}
+
+void Convert::detectType() {
+	if (!checkSpecialValue()) {
+		if (!checkValidate())
+			throw InvalidInputException();
+		if (!detectInt() && !detectFloat() && !detectDouble())
+			throw InvalidInputException();
+	}
+}
+
 bool Convert::detectInt() {
-	_type = 1;
+	if (_fFlag != 0 || _pointFlag != 0)
+		return false;
+
+	this->_type = 0;
+	double temp = strtod(_input.c_str(), 0);
+	if (temp < INT_MIN || temp > INT_MAX)
+		throw InvalidInputException();
+
+	this->_i = atoi(_input.c_str());
+	std::cout << "It's type is INT and Value: " << _i << std::endl;
+	return true;
+}
+
+bool Convert::detectFloat() {
+	int	fIndex = _input.find('f');
+	if (_fFlag != 1 || _pointFlag != 1 || fIndex != _strlen - 1)
+		return false;
+
+	this->_type = 1;
+	float temp;
+	std::stringstream iss(_input.replace(_strlen - 1, 1, ""));
+	iss >> temp;
+	if (iss.fail())
+		throw InvalidInputException();
+	
+	this->_f = temp;
+	std::cout << "It's type is FLOAT and Value: " << _f << std::endl;
 	return true;
 }
 
 bool Convert::detectDouble() {
-	_type = 2;
+	if (_fFlag != 0 || _pointFlag != 1)
+		return false;
+	
+	this->_type = 2;
+	double temp;
+	std::stringstream iss(_input);
+	iss >> temp;
+	if (iss.fail())
+		throw InvalidInputException();
+
+	this->_d = temp;
+	std::cout << "It's type is DOUBLE and Value: " << _d << std::endl << std::endl;
 	return true;
 }
 
@@ -107,6 +210,6 @@ int Convert::getType() const {
 	return _type;
 }
 
-const char *Convert::DefaultErrException::what() const throw() {
-	return ("ERROR");
+const char *Convert::InvalidInputException::what() const throw() {
+	return ("char: impossible\nint: impossible\nfloat: impossible\ndouble: impossible");
 }

@@ -1,7 +1,7 @@
-NAME		= a.out
+NAME		= convert
 
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS	=# -Wall -Wextra -Werror -std=c++98
 INC			= -I ./includes 
 RM			= rm -f
 
@@ -24,6 +24,8 @@ clean		:
 fclean		: clean
 				$(RM) $(NAME)
 
-re			: clean all
+re			: 
+				make clean
+				make all
 
 .PHONY		: all clean re

@@ -9,34 +9,41 @@ class Convert {
 	 Convert(const Convert& origin);
 	 Convert& operator=(const Convert& other);
 
-	 void fromToAnother() const;
-	 void fromInt() const;
-	 void fromDouble() const;
-	 void fromFloat() const;
+	 void	printSpecialValue() const;
+	 void	fromToAnother() const;
+	 void	fromInt() const;
+	 void	fromFloat() const;
+	 void	fromDouble() const;
 
 	 const std::string& getInput() const;
 	 int				getType() const;
 
+	 bool	checkSpecialValue();
+	 bool	checkValidate();
+
 	 void	detectType();
 	 bool	detectInt();
-	 bool	detectDouble();
 	 bool	detectFloat();
+	 bool	detectDouble();
 
 	private:
-	 const std::string	_input;
-	 double				_value;
+	 std::string		_input;
+	 void (Convert::*_pFunc[3])() const;
 	 int				_strlen;
 
+	 int				_fFlag;
+	 int				_pointFlag;
+	 int				_specialFlag;
+
 	 const std::string	_types;
-	 void (Convert::*_pFunc[3])() const;
 
 	 int		_type;
 	 char		_c;
-	 float		_f;
 	 int		_i;
+	 float		_f;
 	 double		_d;
 
-	 class DefaultErrException : public std::exception {
+	 class InvalidInputException : public std::exception {
 		public:
 		 const char *what() const throw();
 	 };
