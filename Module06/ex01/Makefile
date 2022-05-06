@@ -5,9 +5,8 @@ CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 INC			= -I ./includes 
 RM			= rm -f
 
-SRCS		= $(addprefix ./srcs/, \
-						main.cpp \
-						)
+SRCS		= main.cpp \
+				Serialize.cpp \
 
 OBJS		= $(SRCS:.cpp=.o)
 
@@ -25,6 +24,8 @@ clean		:
 fclean		: clean
 				$(RM) $(NAME)
 
-re			: clean all
+re			:
+			make fclean
+			make all
 
 .PHONY		: all clean re

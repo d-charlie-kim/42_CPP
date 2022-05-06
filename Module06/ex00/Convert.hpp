@@ -1,6 +1,8 @@
 #ifndef CONVERT_HPP
 #define CONVERT_HPP
 
+#include <iostream>
+
 class Convert {
 	public:
 	 Convert();
@@ -34,8 +36,6 @@ class Convert {
 	 int				_fFlag;
 	 int				_pointFlag;
 	 int				_specialFlag;
-
-	 const std::string	_types;
 
 	 int		_type;
 	 char		_c;

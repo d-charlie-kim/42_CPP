@@ -1,3 +1,4 @@
+#include "Convert.hpp"
 #include <string>
 #include <iostream>
 #include <cstdlib>
@@ -5,22 +6,21 @@
 #include <climits>
 #include <cfloat>
 #include <sstream>
-#include "Convert.hpp"
 
 Convert::Convert() {}
 
 Convert::~Convert() {}
 
 Convert::Convert(const std::string& input)
-: _input(input), _types("ifd") {
+: _input(input) {
 	_pFunc[0] = &Convert::fromInt;
 	_pFunc[1] = &Convert::fromFloat;
 	_pFunc[2] = &Convert::fromDouble;
 	_strlen = _input.length();
-	_specialFlag = 0;
 	_type = -1;
 	_fFlag = 0;
 	_pointFlag = 0;
+	_specialFlag = 0;
 	_c = 0;
 	_i = 0;
 	_f = 0;
