@@ -5,6 +5,13 @@
 
 class Convert {
 	public:
+	 enum Type {
+		 TYPE_CHAR,
+		 TYPE_INT,
+		 TYPE_FLOAT,
+		 TYPE_DOUBLE
+	 };
+
 	 Convert();
 	 Convert(const std::string& input);
 	 ~Convert();
@@ -13,6 +20,7 @@ class Convert {
 
 	 void	printSpecialValue() const;
 	 void	fromToAnother() const;
+	 void	fromChar() const;
 	 void	fromInt() const;
 	 void	fromFloat() const;
 	 void	fromDouble() const;
@@ -24,18 +32,19 @@ class Convert {
 	 bool	checkValidate();
 
 	 void	detectType();
+	 bool	detectChar();
 	 bool	detectInt();
 	 bool	detectFloat();
 	 bool	detectDouble();
 
 	private:
 	 std::string		_input;
-	 void (Convert::*_pFunc[3])() const;
+	 void (Convert::*_pFunc[4])() const;
 	 int				_strlen;
 
-	 int				_fFlag;
-	 int				_pointFlag;
-	 int				_specialFlag;
+	 int		_fFlag;
+	 int		_pointFlag;
+	 int		_specialFlag;
 
 	 int		_type;
 	 char		_c;

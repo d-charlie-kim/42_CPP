@@ -19,14 +19,14 @@ Serialize& Serialize::operator=(Serialize& other) {
 	return *this;
 }
 
-Data* Serialize::getData() {
+t_Data* Serialize::getData() {
 	return &(_data);
 }
 
-uintptr_t Serialize::serialize(Data *ptr) {
+uintptr_t Serialize::serialize(t_Data *ptr) {
 	return reinterpret_cast<uintptr_t>(ptr);
 }
 
-Data *Serialize::deserialize(uintptr_t raw) {
-	return reinterpret_cast<Data *>(raw);
+t_Data *Serialize::deserialize(uintptr_t raw) {
+	return reinterpret_cast<t_Data *>(raw);
 }

@@ -4,10 +4,10 @@
 class Base {
 	public:
 	 virtual ~Base();
+};
 
-	 Base* generate();
-	 void identify(Base* p);
-	 void identify(Base& p);
-}
+Base* generate();
+void identify(Base* p);
+void identify(Base& p);
 
 #endif

@@ -5,6 +5,7 @@
 #include <exception>
 #include <climits>
 #include <cfloat>
+#include <cctype>
 #include <sstream>
 
 Convert::Convert() {}
@@ -13,9 +14,10 @@ Convert::~Convert() {}
 
 Convert::Convert(const std::string& input)
 : _input(input) {
-	_pFunc[0] = &Convert::fromInt;
-	_pFunc[1] = &Convert::fromFloat;
-	_pFunc[2] = &Convert::fromDouble;
+	_pFunc[0] = &Convert::fromChar;
+	_pFunc[1] = &Convert::fromInt;
+	_pFunc[2] = &Convert::fromFloat;
+	_pFunc[3] = &Convert::fromDouble;
 	_strlen = _input.length();
 	_type = -1;
 	_fFlag = 0;
@@ -36,6 +38,7 @@ Convert& Convert::operator=(const Convert& other) {
 	_pFunc[0] = other._pFunc[0];
 	_pFunc[1] = other._pFunc[1];
 	_pFunc[2] = other._pFunc[2];
+	_pFunc[3] = other._pFunc[3];
 	_c = other._c;
 	_i = other._i;
 	_f = other._f;
@@ -61,6 +64,13 @@ void Convert::printSpecialValue() const{
 	std::cout << "int: impossible" << std::endl;
 	std::cout << "float: " << _input << "f" << std::endl;
 	std::cout << "double: " << _input << std::endl;
+}
+
+void Convert::fromChar() const {
+	std::cout << "char: \'" << _c << "\'" << std::endl;
+	std::cout << "int: " << static_cast<int>(_c) << std::endl;
+	std::cout << "float: " << static_cast<float>(_c) << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(_c) << std::endl;
 }
 
 void Convert::fromInt() const {
@@ -116,11 +126,11 @@ void Convert::fromFloat() const {
 
 bool Convert::checkSpecialValue() {
 	if (_input == "nanf" || _input == "inff" || _input == "+inff" || _input == "-inff") {
-		_type = 1;
+		_type = TYPE_FLOAT;
 		_input.replace(_strlen - 1, 1, "");
 	}
 	else if (_input == "nan" || _input == "inf" || _input == "+inf" || _input == "-inf")
-		_type = 2;
+		_type = TYPE_DOUBLE;
 	else
 		return false;
 	_specialFlag = 1;
@@ -147,7 +157,7 @@ bool Convert::checkValidate() {
 }
 
 void Convert::detectType() {
-	if (!checkSpecialValue()) {
+	if (!checkSpecialValue() && !detectChar()) {
 		if (!checkValidate())
 			throw InvalidInputException();
 		if (!detectInt() && !detectFloat() && !detectDouble())
@@ -155,17 +165,31 @@ void Convert::detectType() {
 	}
 }
 
+bool Convert::detectChar() {
+	if (_strlen == 1 && _input[0] >= 32 && _input[0] <= 126 && !isdigit(_input[0])) {
+		_c = _input[0];
+		_type = TYPE_CHAR;
+		return true;
+	}
+	else if (_strlen == 3 && _input[0] == '\'' && _input[2] == '\'' && _input[1] >= 32 && _input[1] <= 126) {
+		_c = _input[1];
+		_type = TYPE_CHAR;
+		return true;
+	}
+	else
+		return false;
+}
+
 bool Convert::detectInt() {
 	if (_fFlag != 0 || _pointFlag != 0)
 		return false;
 
-	this->_type = 0;
+	this->_type = TYPE_INT;
 	double temp = strtod(_input.c_str(), 0);
 	if (temp < INT_MIN || temp > INT_MAX)
 		throw InvalidInputException();
 
 	this->_i = atoi(_input.c_str());
-	std::cout << "It's type is INT and Value: " << _i << std::endl;
 	return true;
 }
 
@@ -174,7 +198,7 @@ bool Convert::detectFloat() {
 	if (_fFlag != 1 || _pointFlag != 1 || fIndex != _strlen - 1)
 		return false;
 
-	this->_type = 1;
+	this->_type = TYPE_FLOAT;
 	float temp;
 	std::stringstream iss(_input.replace(_strlen - 1, 1, ""));
 	iss >> temp;
@@ -182,7 +206,6 @@ bool Convert::detectFloat() {
 		throw InvalidInputException();
 	
 	this->_f = temp;
-	std::cout << "It's type is FLOAT and Value: " << _f << std::endl;
 	return true;
 }
 
@@ -190,7 +213,7 @@ bool Convert::detectDouble() {
 	if (_fFlag != 0 || _pointFlag != 1)
 		return false;
 	
-	this->_type = 2;
+	this->_type = TYPE_DOUBLE;
 	double temp;
 	std::stringstream iss(_input);
 	iss >> temp;
@@ -198,7 +221,6 @@ bool Convert::detectDouble() {
 		throw InvalidInputException();
 
 	this->_d = temp;
-	std::cout << "It's type is DOUBLE and Value: " << _d << std::endl << std::endl;
 	return true;
 }
 

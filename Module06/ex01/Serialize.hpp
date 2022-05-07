@@ -19,11 +19,11 @@ class Serialize {
 	 Serialize(Serialize& origin);
 	 Serialize& operator=(Serialize& other);
 
-	 Data* getData();
+	 t_Data* getData();
 	 uintptr_t getRaw() const;
 
-	 uintptr_t	serialize(Data *ptr);
-	 Data*		deserialize(uintptr_t raw);
+	 uintptr_t	serialize(t_Data *ptr);
+	 t_Data*	deserialize(uintptr_t raw);
 };
 
 
