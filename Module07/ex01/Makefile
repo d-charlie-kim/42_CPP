@@ -1,11 +1,10 @@
-NAME		= convert
+NAME		= a.out
 
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 RM			= rm -f
 
 SRCS		= main.cpp \
-				Convert.cpp \
 
 OBJS		= $(SRCS:.cpp=.o)
 
@@ -23,8 +22,8 @@ clean		:
 fclean		: clean
 				$(RM) $(NAME)
 
-re			: 
-				make fclean
-				make all
+re			:
+			make fclean
+			make all
 
 .PHONY		: all clean re

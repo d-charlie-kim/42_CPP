@@ -2,6 +2,12 @@
 #define CONVERT_HPP
 
 #include <iostream>
+#include <string>
+#include <exception>
+#include <climits>
+#include <cfloat>
+#include <cctype>
+#include <sstream>
 
 class Convert {
 	public:

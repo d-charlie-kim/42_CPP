@@ -1,12 +1,4 @@
 #include "Convert.hpp"
-#include <string>
-#include <iostream>
-#include <cstdlib>
-#include <exception>
-#include <climits>
-#include <cfloat>
-#include <cctype>
-#include <sstream>
 
 Convert::Convert() {}
 
@@ -183,13 +175,13 @@ bool Convert::detectChar() {
 bool Convert::detectInt() {
 	if (_fFlag != 0 || _pointFlag != 0)
 		return false;
-
 	this->_type = TYPE_INT;
-	double temp = strtod(_input.c_str(), 0);
-	if (temp < INT_MIN || temp > INT_MAX)
+	int temp;
+	std::stringstream iss(_input);
+	iss >> temp;
+	if (iss.fail())
 		throw InvalidInputException();
-
-	this->_i = atoi(_input.c_str());
+	this->_i = temp;
 	return true;
 }
 
@@ -197,14 +189,12 @@ bool Convert::detectFloat() {
 	int	fIndex = _input.find('f');
 	if (_fFlag != 1 || _pointFlag != 1 || fIndex != _strlen - 1)
 		return false;
-
 	this->_type = TYPE_FLOAT;
 	float temp;
 	std::stringstream iss(_input.replace(_strlen - 1, 1, ""));
 	iss >> temp;
 	if (iss.fail())
 		throw InvalidInputException();
-	
 	this->_f = temp;
 	return true;
 }
@@ -212,14 +202,12 @@ bool Convert::detectFloat() {
 bool Convert::detectDouble() {
 	if (_fFlag != 0 || _pointFlag != 1)
 		return false;
-	
 	this->_type = TYPE_DOUBLE;
 	double temp;
 	std::stringstream iss(_input);
 	iss >> temp;
 	if (iss.fail())
 		throw InvalidInputException();
-
 	this->_d = temp;
 	return true;
 }

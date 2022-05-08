@@ -41,11 +41,11 @@ void identify(Base& p) {
 	try {
 		B &b = dynamic_cast<B &>(p);
 		(void)b;
-		std::cout << "B/n";
+		std::cout << "B\n";
 	} catch (const std::exception &e) {}
 	try {
 		C &c = dynamic_cast<C &>(p);
 		(void)c;
-		std::cout << "C/n";
+		std::cout << "C\n";
 	} catch (const std::exception &e) {}
 }

@@ -2,7 +2,6 @@ NAME		= a.out
 
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
-INC			= -I ./includes 
 RM			= rm -f
 
 SRCS		= main.cpp \
@@ -11,12 +10,12 @@ SRCS		= main.cpp \
 OBJS		= $(SRCS:.cpp=.o)
 
 %.o			: %.cpp
-			$(CXX) $(CXXFLAGS) $(INC) -c $^ -o $@
+			$(CXX) $(CXXFLAGS) -c $^ -o $@
 
 all			: $(NAME)
 
 $(NAME)		: $(OBJS)
-			$(CXX) $(CXXFLAGS) $(INC) $^ -o $@
+			$(CXX) $(CXXFLAGS) $^ -o $@
 
 clean		:
 				$(RM) $(OBJS)
