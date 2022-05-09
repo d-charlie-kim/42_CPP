@@ -2,6 +2,7 @@
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
+#include <iostream>
 
 int main(void) {
 	Base *base = generate();
@@ -9,6 +10,7 @@ int main(void) {
 		std::cout << "Error, fail allocate" << std::endl;
 		return (1);
 	}
+
 	identify(base);
 	identify(*base);
 

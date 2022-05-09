@@ -68,7 +68,12 @@
 		"fstream": "cpp",
 		"stack": "cpp",
 		"climits": "cpp",
-		"cfloat": "cpp"
+		"cfloat": "cpp",
+		"__tree": "cpp",
+		"list": "cpp",
+		"set": "cpp",
+		"map": "cpp",
+		"__cxx_version": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }

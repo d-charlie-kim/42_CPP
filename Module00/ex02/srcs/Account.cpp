@@ -32,11 +32,11 @@ void Account::_displayTimestamp(void) {
 	struct tm* t = localtime(&timer);
 	std::cout << "[";
 	std::cout << t->tm_year + 1900 - 2000;
-	std::cout << std::setfill('0') << std::setw(2) << t->tm_mon + 1;
-	std::cout << std::setfill('0') << std::setw(2) << t->tm_mday << "_";
-	std::cout << std::setfill('0') << std::setw(2) << t->tm_hour;
-	std::cout << std::setfill('0') << std::setw(2) << t->tm_min;
-	std::cout << std::setfill('0') << std::setw(2) << t->tm_sec;
+	std::cout << std::multisetfill('0') << std::multisetw(2) << t->tm_mon + 1;
+	std::cout << std::multisetfill('0') << std::multisetw(2) << t->tm_mday << "_";
+	std::cout << std::multisetfill('0') << std::multisetw(2) << t->tm_hour;
+	std::cout << std::multisetfill('0') << std::multisetw(2) << t->tm_min;
+	std::cout << std::multisetfill('0') << std::multisetw(2) << t->tm_sec;
 	std::cout << "]";
 };
 
