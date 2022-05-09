@@ -25,7 +25,7 @@ Span& Span::operator=(const Span& other) {
 	return *this;
 }
 
-void Span::addNumber(unsigned int value) {
+void Span::addNumber(int value) {
 	if (_data.size() >= _totalSize)
 		throw FullStoreException();
 	_data.insert(value);
@@ -42,10 +42,10 @@ const char* Span::NotEnoughException::what() const throw() {
 unsigned int Span::shortestSpan() {
 	if (_data.size() <= 1)
 		throw NotEnoughException();
-	std::multiset<unsigned int>::iterator frontIter = _data.begin();
-	std::multiset<unsigned int>::iterator backIter = ++_data.begin();
+	std::multiset<unsigned int>::reverse_iterator frontIter = ++_data.rbegin();
+	std::multiset<unsigned int>::reverse_iterator backIter = _data.rbegin();
 	unsigned int ret = UINT32_MAX;
-	for (; backIter != _data.end();) {
+	for (; frontIter != _data.rend();) {
 		ret = std::min(ret, *(backIter) - *(frontIter));
 		frontIter++;
 		backIter++;
