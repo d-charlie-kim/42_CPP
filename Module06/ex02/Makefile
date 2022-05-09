@@ -8,10 +8,10 @@ RM			= rm -f
 SRCS		= ./srcs/main.cpp \
 				./srcs/Base.cpp \
 
-OBJS		= $(SRCS:.cpp=.o)
-
 %.o			: %.cpp
 			$(CXX) $(CXXFLAGS) $(INC) -c $^ -o $@
+
+OBJS		= $(SRCS:.cpp=.o)
 
 all			: $(NAME)
 

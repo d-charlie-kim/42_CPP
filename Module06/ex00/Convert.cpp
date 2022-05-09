@@ -54,8 +54,14 @@ void Convert::fromToAnother() const{
 void Convert::printSpecialValue() const{
 	std::cout << "char: impossible" << std::endl;
 	std::cout << "int: impossible" << std::endl;
-	std::cout << "float: " << _input << "f" << std::endl;
-	std::cout << "double: " << _input << std::endl;
+	std::cout << "float: ";
+	if (_input == "inf")
+		std::cout << "+";
+	std::cout << _input << "f" << std::endl;
+	std::cout << "double: ";
+	if (_input == "inf")
+		std::cout << "+";
+	std::cout << _input << std::endl;
 }
 
 void Convert::fromChar() const {
@@ -91,11 +97,7 @@ void Convert::fromDouble() const {
 		std::cout << "impossible" << std::endl;
 	else
 		std::cout << static_cast<int>(_d) << std::endl;
-	std::cout << "float: ";
-	if (_d > FLT_MAX || _d < -FLT_MAX)
-		std::cout << "impossible" << std::endl;
-	else
-		std::cout << static_cast<float>(_d) << "f" << std::endl;
+	std::cout << "float: " << static_cast<float>(_d) << "f" << std::endl;
 	std::cout << "double: " << _d << std::endl;
 }
 
@@ -176,11 +178,13 @@ bool Convert::detectInt() {
 	if (_fFlag != 0 || _pointFlag != 0)
 		return false;
 	this->_type = TYPE_INT;
+
 	int temp;
 	std::stringstream iss(_input);
 	iss >> temp;
 	if (iss.fail())
 		throw InvalidInputException();
+
 	this->_i = temp;
 	return true;
 }
@@ -190,11 +194,13 @@ bool Convert::detectFloat() {
 	if (_fFlag != 1 || _pointFlag != 1 || fIndex != _strlen - 1)
 		return false;
 	this->_type = TYPE_FLOAT;
+
 	float temp;
 	std::stringstream iss(_input.replace(_strlen - 1, 1, ""));
 	iss >> temp;
 	if (iss.fail())
 		throw InvalidInputException();
+
 	this->_f = temp;
 	return true;
 }
@@ -203,11 +209,13 @@ bool Convert::detectDouble() {
 	if (_fFlag != 0 || _pointFlag != 1)
 		return false;
 	this->_type = TYPE_DOUBLE;
+
 	double temp;
 	std::stringstream iss(_input);
 	iss >> temp;
 	if (iss.fail())
 		throw InvalidInputException();
+
 	this->_d = temp;
 	return true;
 }

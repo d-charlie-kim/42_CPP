@@ -5,7 +5,6 @@
 #include <string>
 #include <exception>
 #include <climits>
-#include <cfloat>
 #include <cctype>
 #include <sstream>
 

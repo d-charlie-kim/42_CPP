@@ -1,20 +1,21 @@
-#include "Serialize.hpp"
+#include "Data.hpp"
+#include <cstdint>
 
 int main(void) {
-	Serialize	test;
+	Data	test = {"hello", "world", 123};
 	uintptr_t	keep;
-	t_Data		*check;
+	Data		*check;
 
 	std::cout << "\n-------------\n";
-	std::cout << test.getData()->data1 << std::endl;
-	std::cout << test.getData()->data2 << std::endl;
-	std::cout << test.getData()->number << std::endl;
-	std::cout << test.getData() << std::endl;
+	std::cout << test.data1 << std::endl;
+	std::cout << test.data2 << std::endl;
+	std::cout << test.number << std::endl;
+	std::cout << &test << std::endl;
 
 	std::cout << "-------------\n\n";
 	std::cout << "Serialize and Deserailze\n";
-	keep = test.serialize(test.getData());
-	check = test.deserialize(keep);
+	keep = serialize(&test);
+	check = deserialize(keep);
 	std::cout << keep << std::endl;
 	std::cout << "\n-------------\n";
 
