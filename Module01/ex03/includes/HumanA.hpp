@@ -5,15 +5,15 @@
 #include "Weapon.hpp"
 
 class HumanA {
-	public:
-	 HumanA(std::string name, Weapon& arm);
-	 ~HumanA();
+public:
+	HumanA(std::string name, Weapon& arm);
+	~HumanA();
 
-	 void attack();
+	void attack();
 
-	private:
-	 std::string _name;
-	 Weapon& _Weapon;
+private:
+	std::string _name;
+	Weapon& _Weapon;
 };
 
 #endif

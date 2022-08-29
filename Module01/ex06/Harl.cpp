@@ -5,34 +5,34 @@ Harl::Harl() {
 	_levels[1] = "INFO";
 	_levels[2] = "WARNING";
 	_levels[3] = "ERROR";
-	_pFunc[0] = &Harl::debug;
-	_pFunc[1] = &Harl::info;
-	_pFunc[2] = &Harl::warning;
-	_pFunc[3] = &Harl::error;
 }
 
 Harl::~Harl() {}
 
-void Harl::complain(std::string level) {
-	int i = 0;
-	for (; i < 4; i++) {
-		if (level == _levels[i])
-			break ;
+int Harl::find(std::string level) {
+	for (int i = 0; i < 4; i++) {
+		if (_levels[i] == level)
+			return (i);
 	}
-	switch (i)
-	{
-	case 0:
-		debug();
-	case 1:
-		info();
-	case 2:
-		warning();
-	case 3:
-		error();
-		break;
-	default:
-		std::cout << "[ Probably complaining about insignificant problems ]\n";
-		break;
+	return (-1);
+}
+
+void Harl::complain(std::string level) {
+	int num;
+	num = find(level);
+
+	switch(num) {
+		case DEBUG:
+			this->debug();
+		case INFO:
+			this->info();
+		case WARNING:
+			this->warning();
+		case ERROR:
+			this->error();
+			break;
+		default:
+			std::cout << "[ Probably complaining about insignificant problems ]\n";
 	}
 }
 
@@ -56,5 +56,5 @@ void Harl::warning() {
 
 void Harl::error() {
 	std::cout << "[ ERROR ]\n";
-	std::cout << "This is unacceptable, I want to speak to the manager now.\n\n";
+	std::cout << "This is unacceptable, I want to speak to the manager now.\n";
 }

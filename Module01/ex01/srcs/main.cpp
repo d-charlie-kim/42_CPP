@@ -18,4 +18,4 @@ int main(void) {
 	delete[] zomptr;
 	delete[] zomptr2;
 	return (0);
-};
+}

@@ -3,22 +3,26 @@
 
 #include <iostream>
 
+#define DEBUG 0
+#define INFO 1
+#define WARNING 2
+#define ERROR 3
+
 class Harl {
-	public:
-	 Harl();
-	 ~Harl();
+public:
+	Harl();
+	~Harl();
 
-	 void complain(std::string level);
+	void complain(std::string level);
 
-	private:
-	 void debug();
-	 void info();
-	 void warning();
-	 void error();
+private:
+	void debug();
+	void info();
+	void warning();
+	void error();
 
-	 typedef void (Harl::*FuncPtr)(void);
-	 FuncPtr _pFunc[4];
-	 std::string _levels[4];
+	int find(std::string level);
+	std::string _levels[4];
 };
 
 #endif
